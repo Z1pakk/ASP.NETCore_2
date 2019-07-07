@@ -15,9 +15,16 @@ namespace LanguageFeatures.Controllers
             {
                 Products = Product.GetProducts()
             };
-            //Розширяючий метод
+            Product[] productArray = {
+            new Product {Name = "Kayak" , Price = 275M},
+            new Product {Name = "Lifejacket" , Price = 48.95M}
+            };
             decimal cartTotal = cart.TotalPrices();
-            return View("Index", new string[] { $"Total:{cartTotal}" });
+            decimal arrayTotal = productArray.TotalPrices();
+
+            return View("Index", new string[] {
+                $"Cart total:{cartTotal}",
+                $"Products total:{arrayTotal}" });
         }
     }
 }
