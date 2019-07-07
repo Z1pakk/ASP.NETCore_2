@@ -19,5 +19,22 @@ namespace LanguageFeatures.Models
             }
             return total;
         }
+
+        //Розширяючий метод із фільтрацією
+        public static IEnumerable<Product> FilterByPrice(
+            this IEnumerable<Product> productEnum,
+            decimal minimalPrice)
+        {
+            foreach (Product product in productEnum)
+            {
+                if((product?.Price??0)>= minimalPrice)
+                {
+                    //yield - створює свій ліст у який добавляє 
+                    //кожний елемент який вернули
+                    //В кінці верне ліст із елементами.
+                    yield return product;
+                }
+            }
+        }
     }
 }

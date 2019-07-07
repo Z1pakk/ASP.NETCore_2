@@ -17,13 +17,13 @@ namespace LanguageFeatures.Controllers
             };
             Product[] productArray = {
             new Product {Name = "Kayak" , Price = 275M},
-            new Product {Name = "Lifejacket" , Price = 48.95M}
+            new Product {Name = "Lifejacket" , Price = 48.95M},
+            new Product {Name = "Kayak" , Price = 10.7M},
+            new Product {Name = "Lifejacket" , Price = 19.4M}
             };
-            decimal cartTotal = cart.TotalPrices();
-            decimal arrayTotal = productArray.TotalPrices();
+            decimal arrayTotal = productArray.FilterByPrice(20).TotalPrices();
 
             return View("Index", new string[] {
-                $"Cart total:{cartTotal}",
                 $"Products total:{arrayTotal}" });
         }
     }
