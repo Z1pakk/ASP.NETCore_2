@@ -11,27 +11,13 @@ namespace LanguageFeatures.Controllers
     {
         public ViewResult Index()
         {
-            //Традиционно работа со значениями null требовала явных 
-            //проверок, которые могли становиться
-            //утомительными и подверженными ошибкам, когда требовалось
-            //инспектировать и объект, и его свойства.За счет 
-            //применения null - условной операции такие проверки
-            //будут намного легче и компактнее
-            List<string> results = new List<string>();
-            foreach (Product p in Product.GetProducts())
+            ShoppingCart cart = new ShoppingCart
             {
-                //Если значение р равно
-                //null, то переменная name также будет установлена в 
-                //null.Если значение р не равно null, тогда переменной 
-                //name будет присвоено значение свойства Person.Name
-                string name = p?.Name ?? "<No Name>";
-                decimal? price = p?.Price ?? 0;
-                string relatedName = p?.Related?.Name ?? "<None>";
-                results.Add($"Name: {name}, Price: {price}, Related: {relatedName}");
-            }
-            return View(results);
-
-            //return View(new string[] {"C#","Language","Features" });
+                Products = Product.GetProducts()
+            };
+            //Розширяючий метод
+            decimal cartTotal = cart.TotalPrices();
+            return View("Index", new string[] { $"Total:{cartTotal}" });
         }
     }
 }
