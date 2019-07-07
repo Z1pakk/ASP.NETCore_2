@@ -26,7 +26,9 @@ namespace LanguageFeatures.Controllers
                 //name будет присвоено значение свойства Person.Name
                 string name = p?.Name;
                 decimal? price = p?.Price;
-                results.Add(string.Format("Name: {0}, Price:{1}", name, price));
+                string relatedName = p?.Related?.Name;
+                results.Add(string.Format("Name: {0}, Price: {1}, Related: {2}", 
+                    name, price, relatedName));
             }
             return View(results);
 
