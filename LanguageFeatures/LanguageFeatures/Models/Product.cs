@@ -19,6 +19,7 @@ namespace LanguageFeatures.Models
         public Product Related { get; set; }
         //Властивість тільки для повернення значень.
         public bool InStock { get; } = true;
+        public bool NameBeginsWithS => this.Name?[0] == 'S';
 
 
         public static Product[] GetProducts()
