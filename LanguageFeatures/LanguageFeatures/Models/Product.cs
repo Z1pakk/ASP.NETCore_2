@@ -7,12 +7,19 @@ namespace LanguageFeatures.Models
 {
     public class Product
     {
+        //Тільки в конструкторі можна переопреділити читаєму властивість.
+        public Product(bool stock=true)
+        {
+            InStock = stock;
+        }
         public string Name { get; set; }
         //У властивість по стандарту буде значення - "Watersports"
         public string Category { get; set; } = "Watersports";
         public decimal? Price { get; set; }
         public Product Related { get; set; }
-        
+        //Властивість тільки для повернення значень.
+        public bool InStock { get; } = true;
+
 
         public static Product[] GetProducts()
         {
@@ -22,7 +29,7 @@ namespace LanguageFeatures.Models
                 Category="Water kozak",
                 Price = 200M
             };
-            Product lifejacket = new Product
+            Product lifejacket = new Product(false)
             {
                 Name = "Lifejacket",
                 Price = 50.98M
